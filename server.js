@@ -13,6 +13,11 @@ var MongoClient  		= MongoDB.MongoClient;
 var ObjectID 				= MongoDB.ObjectID;
 var port 						= 5000;
 var Alert 					= require('./models/alert.js');
+var mName  					= process.env.MONGO_NAME;
+var mPw	 						= process.env.MONGO_PASSWORD;
+    
+var mUrl 						= "mongodb://" + mName + ":" + mPw + "@ds047612.mongolab.com:47612/heroku_8z3mdf6z"
+    
 // -- TWILIO ---
 var sid 						= process.env.TWILIO_ACCOUNT_SID;
 var tok 						= process.env.TWILIO_AUTH_TOKEN;
@@ -55,7 +60,7 @@ console.log('Charlie! You did it! ' + port);
 
 // == SERVER ==
 console.log('connecting to MongoDB');
-MongoClient.connect(db.url, function(error, db){
+MongoClient.connect(mUrl, function(error, db){
  if(error){throw error}
    console.log('connected');
 
