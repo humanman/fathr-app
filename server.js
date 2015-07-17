@@ -59,10 +59,10 @@ console.log('Charlie! You did it! ' + port);
 //--- for when I clean up my structure
 
 // == SERVER ==
-console.log('connecting to MongoDB');
-MongoClient.connect(mUrl, function(error, db){
- if(error){throw error}
-   console.log('connected');
+console.log('MongoDB unhooked');
+// MongoClient.connect(mUrl, function(error, db){
+//  if(error){throw error}
+//    console.log('connected');
 
 // module.exports = function(app) {
 // routes will go here
@@ -164,10 +164,10 @@ MongoClient.connect(mUrl, function(error, db){
 
 
 // // == CLEANUP ==
-		process.on('exit', function(){
-		db.close();
-	});
-});//Mongo
+// 		process.on('exit', function(){
+// 		db.close();
+// 	});
+// });//Mongo
 
 
 var makeMeme = function(message, phone){
