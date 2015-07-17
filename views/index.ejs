@@ -4,7 +4,7 @@
   <!-- datetimepicker style -->
     
     <link rel="stylesheet" href="/angular-ui-bootstrap-datetimepicker/datetimepicker.css"> 
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
 
    
@@ -14,7 +14,7 @@
  `<!-- angular -->
     <script type="text/javascript" src="/angular/angular.min.js"></script>
     <script src="/angular-route/angular-route.min.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
     <script src="js/app.js"></script>
     <script src="js/appRoutes.js"></script>
@@ -32,13 +32,14 @@
 
       <br>
       <form>
+        <!-- removed ng-model attr. -->
         <div class="form-group">
           <label for="message"><h1>Thing To Do</h1></label>
-          <input type="text" maxlength="25" class="form-control" ng-model="Alert.message"id="message" placeholder="type the alert message here">
+          <input type="text" maxlength="25" class="form-control" id="message" placeholder="type the alert message here">
         </div>
         <div class="form-group">
           <label for="phone"><h1>Number to send it To</h1></label>
-          <input type="text" maxlength="15" class="form-control" id="phone" name="phone" ng-model="Alert.phone"placeholder="phone number to which we will text the alert at due time">
+          <input type="text" maxlength="15" class="form-control" id="phone" name="phone" placeholder="phone number to which we will text the alert at due time">
         </div>
         
         <br>
@@ -47,7 +48,7 @@
           <pre>Selected time and date is: <em>{{date | date:'shortTime' }}, {{date | date:'fullDate' }}</em></pre>
 
 
-          <datetimepicker name="date" ng-model="Alert.due_at" placeholder="mm/dd/yyyy" min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+          <datetimepicker name="date"  placeholder="mm/dd/yyyy" min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
           <button type="submit" ng-click="alertMe()"class="btn btn-primary btn-lg">Submit</button>
       </form>
         <hr>
