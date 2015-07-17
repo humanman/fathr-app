@@ -11,7 +11,7 @@ var db 							= require('./config/db');
 var MongoDB 				= require('mongodb');
 var MongoClient  		= MongoDB.MongoClient;
 var ObjectID 				= MongoDB.ObjectID;
-var port 						= 3000;
+var port 						= 5000;
 var Alert 					= require('./models/alert.js');
 // -- TWILIO ---
 var sid 						= process.env.TWILIO_ACCOUNT_SID;
