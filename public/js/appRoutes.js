@@ -11,8 +11,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         // alerts page that will use the AlertController
         .when('/alerts', {
             templateUrl: 'views/alerts.html',
-            controller: 'AlertController'
-        });
+            controller: 'DatePickerCtrl'
+        })
+
+        .otherwise({
+        redirectTo: '/'
+      });
 
     $locationProvider.html5Mode({
         enabled: true,

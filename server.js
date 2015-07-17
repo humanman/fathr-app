@@ -66,7 +66,15 @@ console.log('MongoDB unhooked');
 
 // module.exports = function(app) {
 // routes will go here
-
+var data = {
+  "alerts": [
+    {
+      "message"	: "Lorem ipsum",
+      "phone"		: "7777777",
+      "date"		: "2015-10-11"
+    }
+  ]
+};
 
 	 // server routes ======================================
         // handle things like api calls
@@ -119,16 +127,22 @@ console.log('MongoDB unhooked');
 
 //-- this should add custom text to bottom of meme
 
+
 	app.post('/alerts', function(req, res){
 
 	  console.log(req.body.due_at);
 	  var message = req.body.message;
 	  var phone		= req.body.phone;
+	  console.log(req.body.phone);
+	 
 	  // try query.body if this doesn't work
 	  //-- need to get value of datepicker <pre> which displays the selected date and time.
 	  var date		= req.body.due_at;
 	   
 	  console.log(message + " is inserted");
+	  data.alerts.push(req.body);
+  	res.json(req.body);
+  	console.log(req.body)
 
 	  // db.collection('alerts').insert({
 	  // 	message : message,
@@ -220,14 +234,10 @@ var sendMeme = function(meme, num){
 	client.sendMessage({
 
 	  to:'+1' + num, // Any number Twilio can deliver to
-	  from: +18322517983, // A number you bought from Twilio and can use for outbound communication
+	  from: "+18322517983", // A number you bought from Twilio and can use for outbound communication
 	   // body of the SMS message
 	  body: "",
-
-	  mediaUrl: "https://ralphseastresgallery.files.wordpress.com/2014/05/random1.jpg"
-
-	  
-
+	  mediaUrl: meme
 	}, function(err, responseData) { //this function is executed when a response is received from Twilio
 
 	  if (!err) { // "err" is an error received during the request, if any

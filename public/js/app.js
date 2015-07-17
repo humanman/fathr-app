@@ -1,20 +1,19 @@
-angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker']);
-
-angular.module('fathr').controller('DatePicker',
+angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker']).controller('DatePickerCtrl',
 function ($scope, $http, $location, $timeout) {
 
-  $scope.Alert = {};
+  $scope.form = {};
   $scope.errorMessage = '';
 
   $scope.alertMe = function() {
-    $http.post('/alerts', $scope.Alert).
+    $http.post('/alerts', $scope.form).
         success(function(data) {
             $location.path('/');
             console.log(data + "-alertMe was success");
         }).error(function(err) {
             $scope.errorMessage = err;
+            console.log(err)
         });
-  }
+  };
 
   $scope.dateTimeNow = function() {
     $scope.date = new Date();
