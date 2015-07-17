@@ -130,20 +130,20 @@ console.log('MongoDB unhooked');
 	   
 	  console.log(message + " is inserted");
 
-	  db.collection('alerts').insert({
-	  	message : message,
-	  	phone		: phone,
-	  	due_at 	: date
-	  }, function(error, data){
-	  	if(error){throw error}
-	    	else{
+	  // db.collection('alerts').insert({
+	  // 	message : message,
+	  // 	phone		: phone,
+	  // 	due_at 	: date
+	  // }, function(error, data){
+	  // 	if(error){throw error}
+	  //   	else{
 	    		makeMeme(message, phone);
 	    		console.log(message + "sending /alert data your way!")
 	    		// res.send(JSON.stringify(data));
 	    		console.log(JSON.stringify(data));
 
-	    }
-	  });
+	    // }
+	  // });
 
 
  });//app.post /newalert
