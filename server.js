@@ -53,7 +53,7 @@ app.use(express.static(__dirname +'/'));
 app.set('view engine', 'ejs');
 
 
-app.listen(port);
+app.listen(process.env.PORT || port)
 
 console.log('Charlie! You did it! ' + port);
 //--- for when I clean up my structure
