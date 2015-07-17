@@ -151,7 +151,7 @@ var data = {
 	  // }, function(error, data){
 	  // 	if(error){throw error}
 	  //   	else{
-	    		makeMeme(message, phone);
+	    		makeMeme(req.body.message, req.body.phone);
 	    		console.log(message + "sending /alert data your way!")
 	    		// res.send(JSON.stringify(data));
 	    		console.log(JSON.stringify(data));
@@ -213,7 +213,7 @@ var makeMeme = function(message, phone){
 	            			if (!err) {
 	            				//change to send so it sends a json of the below to be caught by angular
 	                  // res.sendtojson?
-	                	
+	                		console.log("path to meme: " +captionedImage)
 	                	 sendMeme(captionedImage, phone);
 	                } else {
 	                 	console.log("error from mememaker: " + err)
