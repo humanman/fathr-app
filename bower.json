@@ -1,0 +1,11 @@
+{
+  "name": "final_project_fathr",
+  "version": "0.0.0",
+  "authors": [
+    "Ben Sayeg <bensayeg@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular-ui-bootstrap-datetimepicker": "~0.11.2"
+  }
+}
