@@ -55,7 +55,7 @@ console.log('Charlie! You did it! ' + port);
 
 // == SERVER ==
 console.log('connecting to MongoDB');
-MongoClient.connect('mongodb://localhost:27017/fathr', function(error, db){
+MongoClient.connect(db.url, function(error, db){
  if(error){throw error}
    console.log('connected');
 
@@ -158,7 +158,7 @@ MongoClient.connect('mongodb://localhost:27017/fathr', function(error, db){
 
 
 
-// == CLEANUP ==
+// // == CLEANUP ==
 		process.on('exit', function(){
 		db.close();
 	});
