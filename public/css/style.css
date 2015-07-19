@@ -1,0 +1,37 @@
+@import url(http://fonts.googleapis.com/css?family=Knewave);
+
+label{
+	font-family: 'Impact' !important;
+}
+
+.shadow {
+	z-index: 10;
+	-webkit-box-shadow: 27px 2px 161px -13px rgba(0,0,0,0.75)!important;
+}
+input {
+	 box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
+
+input:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+img{
+	
+	margin-top: 5%;
+	
+}
+
+#welcome {
+	position: relative;
+	z-index: 5;
+	margin-left: 30%;
+	font-family: Knewave;
+	font-size: 500%;
+	color: pink;
+	opacity: 0;
+
+}

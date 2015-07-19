@@ -1,18 +1,38 @@
-angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker']).controller('DatePickerCtrl',
-function ($scope, $http, $location, $timeout) {
+angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker','angular-flash.service', 'angular-flash.flash-alert-directive']);
+// angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker']).controller('DatePickerCtrl',
+// function ($scope, $http, $location, $timeout) {
+var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
+ 
 
   $scope.form = {};
   $scope.errorMessage = '';
+  $scope.alertMe = function(flash) {
+    if ($scope.form.date === undefined){$scope.form.date = new Date()};
+        //trying to create flash message based on nummber
+    if ($scope.form.phone === undefined || $scope.form.phone.length != 10) { 
+    // Publish a error flash
+      $scope.errors = "Please input number as 10 digits with no spaces - 1234567890" }
+    else{
 
-  $scope.alertMe = function() {
-    $http.post('/alerts', $scope.form).
-        success(function(data) {
-            $location.path('/');
-            console.log(data + "-alertMe was success");
-        }).error(function(err) {
-            $scope.errorMessage = err;
-            console.log(err)
-        });
+      $http.post('/alerts', $scope.form).
+      success(function(data) {
+        $scope.successYeah = "Your message has been successfully sent to " + data.phone + ", " +data.date
+       
+        // $scope.submit = function(){alert("successful");};
+        $location.path('/');
+       
+        // $scope.reset();
+      }).error(function(err) {
+        $scope.errorMessage = err;
+        console.log(err)
+      });
+    }
+  };
+
+  $scope.reset = function() {
+    $scope.user    = angular.copy($scope.form);
+    $scope.errors  = '';
+    $scope.successYeah = '';
   };
 
   $scope.dateTimeNow = function() {
@@ -57,4 +77,4 @@ function ($scope, $http, $location, $timeout) {
   $scope.resetHours = function() {
     $scope.date.setHours(1);
   };
-});
+}

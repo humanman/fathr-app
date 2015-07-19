@@ -4,24 +4,26 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-  	"start" : "node server.js",
-    "test"	: "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
- "dependencies": {
- 		"body-parser" : "~1.13.2",
- 		"caption"			:  "~0.0.1",
- 		"ejs" 				:  "~2.3.3",  
- 		"express"			:  "~4.13.1",
- 		"fs"					:		"~0.0.2",
- 		"gm"					:		"latest",
- 		"imagemagick"	:		"latest",
- 		"method-override"	:"~2.3.4",
- 		"mongodb"			:		"~2.0.39",
- 		"mongoose"		:		"~4.0.7",
- 		"morgan"			:		"~1.6.1",
- 		"request"			:		"~2.58.0",
- 		"twilio"			:   "~2.2.1"
- },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "caption": "~0.0.1",
+    "ejs": "~2.3.3",
+    "express": "~4.13.1",
+    "fs": "~0.0.2",
+    "gm": "latest",
+    "google-libphonenumber": "^1.0.3",
+    "imagemagick": "latest",
+    "method-override": "~2.3.4",
+    "mongodb": "~2.0.39",
+    "mongoose": "~4.0.7",
+    "morgan": "~1.6.1",
+    "request": "~2.58.0",
+    "twilio": "~2.2.1"
+  },
   "author": "",
   "license": "ISC"
 }
+ 
