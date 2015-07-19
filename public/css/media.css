@@ -1,0 +1,11 @@
+
+#welcome {
+	position: relative;
+	z-index: 5;
+	margin-top: 60%;
+	margin-left: 30%;
+	font-family: Knewave;
+	font-size: 300%;
+	color: black; 
+	opacity: 0;
+}

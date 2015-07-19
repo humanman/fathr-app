@@ -5,8 +5,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/angular-ui-bootstrap-datetimepicker/datetimepicker.css"> 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <link rel="stylesheet" media="(max-width: 900px)" href="/css/media.css"/>
    
   <!-- JS -->
     <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
@@ -27,17 +26,16 @@
   </head>
   <body> 
     
-  
+    <div id="top-page">
       <svg><h1 transform-origin="center" id="welcome">Try it now!</h1>
        </svg>
-    <div ng-controller="DatePickerCtrl" class="container">
-      <div class="form-group">
 
-        <svg>
+       <svg>
           <img transform-origin="center" class="shadow img-rounded" id="sample=meme" alt="meme" src="<%= img %>">
         <svg>
-      
-      </div>
+    </div>
+    <div ng-controller="DatePickerCtrl" class="container">
+   
 
       <br>
       <form>
