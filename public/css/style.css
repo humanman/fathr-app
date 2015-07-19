@@ -20,9 +20,6 @@ input:focus {
     box-shadow: 0 0 10px #9ecaed;
 }
 
-#top-page {
-	margin-top: -50%;
-}
 
 img{
 	margin-top: 5%;
@@ -42,6 +39,10 @@ img{
 }
 
 @media (min-width: 800px) { 
+	
+#top-page {
+	margin-top: -50%;
+}
 
 	#welcome {
 		position: relative;
