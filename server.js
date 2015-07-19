@@ -30,8 +30,10 @@ var client          = require('twilio')(sid, tok);
 var fs              = require("fs");
 var caption         = require('caption');
 var im              = require('imagemagick');
-var gm              = require('gm')
-
+// var gm              = require('gm')
+var gm 							= require('gm').subClass({
+    imageMagick: true
+});
 // -- BODY PARSER --
 app.use(morgan('combined'));
 app.use(bodyParser());
