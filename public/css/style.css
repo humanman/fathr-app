@@ -20,33 +20,51 @@ input:focus {
     box-shadow: 0 0 10px #9ecaed;
 }
 
+#top-page {
+	position: relative;
+	top: -150px !important;
+	margin-bottom: -10% !important;
+}
+
 
 img{
-	margin-top: 5%;
-	margin-left: 20%;
+	position: relative;
+	z-index: 5 !important;
+	margin-top: -3% !important;
+	margin-left: 25%;
 	display: block;
 }
 
 #welcome {
 	position: relative;
-	z-index: 10;
+	top: -10px !important;
+	z-index: 10 !important;;
 	margin-left: 30%;
 	font-family: Knewave;
-	font-size: 500%;
+	font-size: 300%;
 	color: pink;
 	opacity: 0;
-
 }
 
-@media (min-width: 800px) { 
-	
-#top-page {
-	margin-top: -50%;
-}
+@media (max-width: 1000px) { 
+
+	#top-page {
+		position: relative;
+		top: -15% !important;
+		margin: auto;
+		margin-bottom: -10% !important;
+		margin-left: -13% !important;
+	} 
+
+	img{
+		position: relative;
+		z-index: 5 !important;
+		margin-top: -20% !important;
+		margin-left: 23%;
+		display: block;
+	}
 
 	#welcome {
-		position: relative;
-		top: 300px;
 		z-index: 10;
 		margin-left: 30%;
 		font-family: Knewave;

@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 	randCol();
 
-
+	
 
 	$img.velocity("slideDown",{ duration: 2000 });
 
@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 	setTimeout(function(){
 		$welcome.velocity ( {
-			opacity: 1,
+			opacity: .8,
 			translateX: "-200px",
 	    rotateZ: "-45deg" 
 	  })
