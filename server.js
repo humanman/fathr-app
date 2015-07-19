@@ -28,7 +28,7 @@ var client          = require('twilio')(sid, tok);
 
 // -- IMAGE MAGICK --
 var fs              = require("fs");
-var caption         = require('caption');
+var caption         = require('./caption-mod/index.js');
 var im              = require('imagemagick');
 // var gm              = require('gm')
 var gm 							= require('gm').subClass({

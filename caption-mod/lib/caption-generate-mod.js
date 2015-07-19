@@ -54,7 +54,7 @@ var generate = module.exports = function(imgPath,caption,options,callback){
       , args = [
           '-strokewidth','1.3',
           '-stroke','#565656',
-          '-font','Lucinda.ttf',
+          '-font','Helvetica-Bold',
           '-background','transparent',
           '-fill','white',
           '-gravity','center',
