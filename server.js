@@ -4,8 +4,8 @@ var app 						= express();
 var bodyParser 			= require('body-parser');
 var morgan 					= require('morgan');
 var methodOverride 	= require('method-override');
-var request         = require('request')
-var ejs             = require('ejs')
+var request         = require('request');
+var ejs             = require('ejs');
 // -- MONGODB --
 // var db 							= require('./config/db-dev.js');
 // var MongoDB 				= require('mongodb');
@@ -57,7 +57,7 @@ app.use(express.static(__dirname +'/'));
 app.set('view engine', 'ejs');
 
 
-app.listen(process.env.PORT || port)
+app.listen(process.env.PORT || port);
 
 console.log('Charlie! You did it! ' + port);
 
@@ -95,15 +95,15 @@ console.log('Twilio unhooked');
 			request('http://thecatapi.com/api/images/get?format=xml&categories=kitten&type=jpg', function (error, response, body) {
 					if (!error && response.statusCode == 200) {
 						//this api does not return a json object so we must extract the img url by hand via regexp
-						var re = /<url>(.*)<\/url>/
-						var imgUrl = body.match(re)
-	      		var actualImg = imgUrl[1].match(/.com\/(.*)/)
+						var re = /<url>(.*)<\/url>/;
+						var imgUrl = body.match(re);
+	      		var actualImg = imgUrl[1].match(/.com\/(.*)/);
 	      		//-- nested in the callback is our insulting top text
 	      		request('http://pleaseinsult.me/api' , function (error, response, body) {
 	        if (!error && response.statusCode == 200) {
 	          var insult = JSON.parse(body);
 	         
-	          console.log(body)
+	          console.log(body);
 	       
 	          // -- resize cat image and save
 	          gm(imgUrl[1]).resize(500, 450, "!").write('image/memed1.jpg',function (err) {
@@ -116,7 +116,7 @@ console.log('Twilio unhooked');
 	              var options = {
 		              caption : insult.insult,
 		              bottomCaption : sampleCaption
-	              }
+	              };
 	              caption.path('image/memed1.jpg',options,function(err,captionedImage){
 	              	//--err will contain an Error object if there was an error
 	            		// otherwise, captionedImage will be a path to a file.
@@ -127,7 +127,7 @@ console.log('Twilio unhooked');
 	                  console.log(captionedImage);
 	                } else {
 	                 	console.log(err);
-	                };
+	                }
 	              });// caption
 	            }
 	          });// gm
@@ -149,7 +149,7 @@ console.log('Twilio unhooked');
 		var bTime		= tConv(new Date(date));
 	 	var phnFmt 	= formatNum(phone);
 	 	
-		res.json({message: message, date: bDate + " at " + bTime,  phone: phnFmt})
+		res.json({message: message, date: bDate + " at " + bTime,  phone: phnFmt});
 	  // console.log(req.body.due_at);
 
 	  	//--- this doesn't fucking work!
@@ -198,14 +198,14 @@ var makeMeme = function(message, phone){
 	request('http://thecatapi.com/api/images/get?format=xml&categories=kitten&type=jpg', function (error, response, body) {
 					if (!error && response.statusCode == 200) {
 						//this api does not return a json object so we must extract the img url by hand via regexp
-						var re = /<url>(.*)<\/url>/
-						var imgUrl = body.match(re)
-	      		var actualImg = imgUrl[1].match(/.com\/(.*)/)
+						var re = /<url>(.*)<\/url>/;
+						var imgUrl = body.match(re);
+	      		var actualImg = imgUrl[1].match(/.com\/(.*)/);
 	      		//-- nested in the callback is our insulting top text
 	      		request('http://pleaseinsult.me/api' , function (error, response, body) {
 	        if (!error && response.statusCode == 200) {
 	          var insult = JSON.parse(body);
-	          console.log(insult.insult)
+	          console.log(insult.insult);
 
 	          // -- resize cat image and save
 	          gm(imgUrl[1]).resize(500, 450, "!").write('image/memed1.jpg',function (err) {
@@ -217,7 +217,7 @@ var makeMeme = function(message, phone){
 	              var options = {
 	              caption : insult.insult,
 	              bottomCaption : 'also, ' + message
-	              }
+	              };
 	              caption.path('image/memed1.jpg',options,function(err,captionedImage){
 	              	//--err will contain an Error object if there was an error
 	            		// otherwise, captionedImage will be a path to a file.
@@ -227,8 +227,8 @@ var makeMeme = function(message, phone){
 	                		// console.log("path to meme: " +captionedImage)
 	                		sendMeme(captionedImage, phone);
 	                } else {
-	                 	console.log("error from mememaker: " + err)
-	                };
+	                 	console.log("error from mememaker: " + err);
+	                }
 	              });// caption
 	            }
 	          });// gm
@@ -264,7 +264,7 @@ var sendMeme = function(meme, num){
 	      console.log(responseData.mediaUrl); // outputs "word to your mother."
 
 	  } else {
-	  	console.log("error message from sendMeme: " + err[0])
+	  	console.log("error message from sendMeme: " + err[0]);
 	  }
 	});// client.sendMessage
 
@@ -314,7 +314,7 @@ var conjArr = [
 
 //---- func to retrieve random bottom caption for sample meme on landing page
 var randElement = function (arr) {
-	return arr[Math.floor(Math.random() * arr.length)]
+	return arr[Math.floor(Math.random() * arr.length)];
 };
 
 var tConv = function (date) {
@@ -326,8 +326,7 @@ var tConv = function (date) {
   minutes = minutes < 10 ? '0'+minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
-}
-
+};
 
 
 

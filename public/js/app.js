@@ -7,16 +7,16 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
   $scope.form = {};
   $scope.errorMessage = '';
   $scope.alertMe = function(flash) {
-    if ($scope.form.date === undefined){$scope.form.date = new Date()};
+    if ($scope.form.date === undefined){$scope.form.date = new Date();}
         //trying to create flash message based on nummber
     if ($scope.form.phone === undefined || $scope.form.phone.length != 10) { 
     // Publish a error flash
-      $scope.errors = "Please input number as 10 digits with no spaces - 1234567890" }
+      $scope.errors = "Please input number as 10 digits with no spaces - 1234567890"; }
     else{
 
       $http.post('/alerts', $scope.form).
       success(function(data) {
-        $scope.successYeah = "Your message has been successfully sent to " + data.phone + ", " +data.date
+        $scope.successYeah = "Your message has been successfully sent to " + data.phone + ", " +data.date;
        
         // $scope.submit = function(){alert("successful");};
         $location.path('/');
@@ -24,7 +24,7 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
         // $scope.reset();
       }).error(function(err) {
         $scope.errorMessage = err;
-        console.log(err)
+        console.log(err);
       });
     }
   };
@@ -77,4 +77,4 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
   $scope.resetHours = function() {
     $scope.date.setHours(1);
   };
-}
+};
