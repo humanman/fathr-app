@@ -1,7 +1,7 @@
 # Welcome to my Insult/Reminder App!
 
 #THE APP!!!
-[app](https://blooming-ridge-7177.herokuapp.com)
+[app](https://catsninsults.herokuapp.com/)
 My app is a single page MEAN app(Mongo, Express, Angular, Node), which takes in a task, a phone number, and a date/time.
 The app will then construct a meme with the inputed task and send it as an MMS to the inputed phone number at the inputed date/time.
 
