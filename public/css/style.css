@@ -1,5 +1,78 @@
 @import url(https://fonts.googleapis.com/css?family=Knewave);
 
+#lean_overlay {
+  position: fixed;
+  z-index:100;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
+}
+#phone-modal{
+	border-radius: 20px;
+	height: 150px;
+	width:  400px;
+	padding: auto;
+	background-color: #9ecaed;
+	opacity: .8;
+	margin-left: 25%;
+	display: none;
+	box-shadow: 0px 0px 4px rgba(0,0,0,0.7); 
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); 
+	-moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+}
+
+
+#phone-modal > input{
+	margin-left: 30%;
+}
+
+#phone-modal > label{
+	margin-left: 10%;
+}
+
+#message-modal{
+	border-radius: 20px;
+	height: 150px;
+	width:  400px;
+	padding: auto;
+	background-color: #9ecaed;
+	opacity: .8;
+	margin-left: 25%;
+	display: none;
+	box-shadow: 0px 0px 4px rgba(0,0,0,0.7); 
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); 
+	-moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+}
+
+#message-modal > input{
+	margin-left: 15%;
+	width: 70%;
+}
+
+#message-modal > label{
+	margin-left: 25%;
+}
+
+.modal_close:hover {
+	text-decoration: none;
+}
+
+.modal_close { 
+	color: gray;
+	text-decoration: none;
+	position: absolute; 
+	top: 12px; 
+	right: 12px; 
+	display: block; 
+	width: 14px; 
+	height: 14px; 
+	background: url(../image/close-bt.png); 
+	z-index: 2; 
+}
+
 label{
 	font-family: 'Impact' !important;
 }

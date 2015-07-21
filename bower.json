@@ -6,6 +6,10 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "angular-ui-bootstrap-datetimepicker": "~0.11.2"
+    "angular-ui-bootstrap-datetimepicker": "~0.11.2",
+    "angular-modal-service": "~0.6.6"
+  },
+  "resolutions": {
+    "angular": ">=1 <1.3.0"
   }
 }

@@ -6,17 +6,11 @@ var morgan 					= require('morgan');
 var methodOverride 	= require('method-override');
 var request         = require('request');
 var ejs             = require('ejs');
-// -- MONGODB --
-// var db 							= require('./config/db-dev.js');
-// var MongoDB 				= require('mongodb');
-// var MongoClient  		= MongoDB.MongoClient;
-// var ObjectID 				= MongoDB.ObjectID;
+
 var port 						= 5000;
 var Alert 					= require('./models/alert.js');
-// var mName  					= process.env.MONGO_NAME;
-// var mPw	 						= process.env.MONGO_PASSWORD;
-    
-// var mUrl 						= "mongodb://" + mName + ":" + mPw + "@d@ds047592.mongolab.com:47592/fathr"
+
+
     
 // -- TWILIO ---
 var sid 						= process.env.TWILIO_ACCOUNT_SID;
@@ -50,13 +44,9 @@ app.use(express.static(__dirname +'/'));
 
 
 
-//-- this configs routes
-
 
 
 app.set('view engine', 'ejs');
-
-
 app.listen(process.env.PORT || port);
 
 console.log('Charlie! You did it! ' + port);
@@ -65,23 +55,7 @@ console.log('Charlie! You did it! ' + port);
 // == SERVER ==
 console.log('MongoDB unhooked');
 console.log('Twilio unhooked');
-//---- for dev
-// MongoClient.connect( 'mongodb://localhost:27017/alerts', function(error, db){
-//---- for prod
-// MongoClient.connect(mUrl, function(error, db){
- // if(error){throw error}
- //   console.log('connected');
 
-//--- temp db
-	// var dataObj = {
-	//   "alerts": [
-	//     {
-	//       "message"	: "Lorem ipsum",
-	//       "phone"		: "7777777777",
-	//       "due_at"		: "2015-10-11"
-	//     }
-	//   ]
-	// };
 
 // SERVER ROUTES ======================================
        
@@ -147,51 +121,20 @@ console.log('Twilio unhooked');
 	  var phone		= req.body.phone;
 	 	var bDate		= new Date(date).toDateString();
 		var bTime		= tConv(new Date(date));
+
 	 	var phnFmt 	= formatNum(phone);
+	 
 	 	
-		res.json({message: message, date: bDate + " at " + bTime,  phone: phnFmt});
-	  // console.log(req.body.due_at);
+			res.json({message: message, date: bDate + " at " + bTime,  phone: phnFmt});
 
-	  	//--- this doesn't fucking work!
-  		// db.colleciton('alerts').find({due_at: {$lte: new Date()}})
-	
-	   
-  	//---- for temp db
-	  // dataObj.alerts.push({message: message, date: date, phone: phone});
-  	
+		   
+		   makeMeme(req.body.message, req.body.phone);
 
-	  //---- for mongodb
-		  // db.collection('alerts').insert({
-		  // 	message : message,
-		  // 	phone		: phone,
-		  // 	due_at 	: date
-		  // }, function(error, data){
-		  // 	if(error){throw error}
-		  //   	else{
-		    		makeMeme(req.body.message, req.body.phone);
-		  //   		console.log(message + "sending /alert data your way!")
-		  //   		console.log(JSON.stringify(data));
-		  //   }
-		  // });
-
-		
  });//app.post /newalert
 
  
 
-
-
-
-
-
-
-
-
-// // == CLEANUP ==
-	// 	process.on('exit', function(){
-	// 	db.close();
-	// });
-// });//Mongo
+//------- MAKE MEME FUNCITONS ------
 
 
 var makeMeme = function(message, phone){
@@ -224,7 +167,7 @@ var makeMeme = function(message, phone){
 	            			if (!err) {
 	            				//change to send so it sends a json of the below to be caught by angular
 	                  
-	                		// console.log("path to meme: " +captionedImage)
+	                		
 	                		sendMeme(captionedImage, phone);
 	                } else {
 	                 	console.log("error from mememaker: " + err);
@@ -255,14 +198,8 @@ var sendMeme = function(meme, num){
 	}, function(err, responseData) { //this function is executed when a response is received from Twilio
 
 	  if (!err) { // "err" is an error received during the request, if any
-
-	      // "responseData" is a JavaScript object containing data received from Twilio.
-	      // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
-	      // http://www.twilio.com/docs/api/rest/sending-sms#example-1
-
-	      console.log(responseData.from); // outputs "+14506667788"
-	      console.log(responseData.mediaUrl); // outputs "word to your mother."
-
+	      console.log(responseData.from); // outputs 
+	      console.log(responseData.mediaUrl); // outputs 
 	  } else {
 	  	console.log("error message from sendMeme: " + err[0]);
 	  }
