@@ -239,14 +239,12 @@ var taskArr = [
 
 
 var conjArr = [
+	"also, ", 
 	"oh! and don't forget-", 
-	"and remember to", 
-	"also", 
-	"also", 
-	"and", 
-	"and", 
-	"...btw,",
-	"...btw,"
+	"also, don't forget: ", 
+	"also, ", 
+	"and btw, ",
+	"...btw, "
 ];
 
 //---- func to retrieve random bottom caption for sample meme on landing page
