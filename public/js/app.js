@@ -1,6 +1,5 @@
 angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker','angular-flash.service', 'angular-flash.flash-alert-directive']);
-// angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker']).controller('DatePickerCtrl',
-// function ($scope, $http, $location, $timeout) {
+
 var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
  
 
@@ -18,10 +17,10 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
       success(function(data) {
         $scope.successYeah = "Your message has been successfully sent to " + data.phone + ", " +data.date;
        
-        // $scope.submit = function(){alert("successful");};
+      
         $location.path('/');
        
-        // $scope.reset();
+
       }).error(function(err) {
         $scope.errorMessage = err;
         console.log(err);
