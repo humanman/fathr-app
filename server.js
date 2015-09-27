@@ -13,9 +13,12 @@ var Alert 					= require('./models/alert.js');
 
     
 // -- TWILIO ---
-var sid 						= process.env.TWILIO_ACCOUNT_SID;
-var tok 						= process.env.TWILIO_AUTH_TOKEN;
-var myNum       	 	= process.env.TWILIO_NUMBER;
+// var sid 						= process.env.TWILIO_ACCOUNT_SID;
+// var tok 						= process.env.TWILIO_AUTH_TOKEN;
+// var myNum       	 	= process.env.TWILIO_NUMBER;
+var sid 						= 'ACb487422e2904bb692be9a5bd94a8f6a4';
+var tok 						= '10156762adcc47137253413575313446';
+var myNum       	 	= '+8322517983';
 var client          = require('twilio')(sid, tok);
 
 
@@ -32,8 +35,8 @@ var gm 							= require('gm').subClass({
 app.use(morgan('combined'));
 app.use(bodyParser());
 app.use(bodyParser.json());
-// parse application/vnd.api+json as json
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
+// parse application/vnd.api+json as json (was 'application/vnd.api+json')
+app.use(bodyParser.json({ type: 'application/json' })); 
 app.use(bodyParser.urlencoded());
 app.use(methodOverride('X-HTTP-Method-Override')); 
 //this doesn't.fucking/work!
@@ -54,7 +57,7 @@ console.log('Charlie! You did it! ' + port);
 
 // == SERVER ==
 console.log('MongoDB unhooked');
-console.log('Twilio unhooked');
+// console.log('Twilio unhooked');
 
 
 // SERVER ROUTES ======================================
@@ -73,9 +76,10 @@ console.log('Twilio unhooked');
 						var imgUrl = body.match(re);
 	      		var actualImg = imgUrl[1].match(/.com\/(.*)/);
 	      		//-- nested in the callback is our insulting top text
-	      		request('http://pleaseinsult.me/api' , function (error, response, body) {
+	      		request('http://www.nslt.us/api/full_insult' , function (error, response, body) {
 	        if (!error && response.statusCode == 200) {
 	          var insult = JSON.parse(body);
+	          // var insult = "you are stupid!!"
 	         
 	          console.log(body);
 	       
@@ -83,6 +87,7 @@ console.log('Twilio unhooked');
 	          gm(imgUrl[1]).resize(500, 450, "!").write('image/memed1.jpg',function (err) {
 	          	//-- format/write text onto image
 	          	if (err) {
+	          		 
 	                console.log(err);
 	            } else {
 	           //-- the bottomCaption should take from input form
