@@ -3,17 +3,17 @@
   <head>
   <!-- datetimepicker style -->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/angular-ui-bootstrap-datetimepicker/datetimepicker.css"> 
+    <link rel="stylesheet" href="/angular-ui-bootstrap-datetimepicker/datetimepicker.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" media="(max-width: 900px)" href="/css/media.css"/>
-   
+
   <!-- JS -->
     <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
     <script type="text/javascript" src="js/funstuff.js"></script>
- 
+
  `<!-- angular -->
 
 
@@ -27,36 +27,36 @@
     <script src="js/MainCtrl.js"></script>
 
   </head>
-  <body> 
+  <body>
 
-   
+
     <div ng-controller="DatePickerCtrl" class="container">
-         
+
       <div id="top-page" class="form-group">
         <svg>
           <h1 transform-origin="center" id="welcome">Try it now!</h1>
-        
+
           <img transform-origin="center" class="shadow img-rounded" id="sample=meme" alt="meme" src="<%= img %>">
         <svg>
    </div>
 
 
       <form>
-       
+
         <div class="form-group">
           <label for="message"><h1>Thing To Do</h1></label>
-         
+
           <input type="text" href="#message-modal" ng-model="form.message" maxlength="25" class="form-control" id="message" placeholder="type the alert message here">
 
         </div>
         <div class="form-group">
           <label for="phone"><h1>Number to send it To</h1></label>
-          
+
           <input  rel="leanModal" href="#phone-modal" type="text" ng-model="form.phone" maxlength="15" class="form-control" id="phone" name="phone" placeholder="phone number to which we will text the alert at due time">
-          
+
         </div>
         <br>
-       
+
         <em><h1 style="background-color: red;">{{ errors }}</h1></em>
         <em><h1 style="background-color: green;">{{ successYeah }}</h1></em>
         <label><h1>Due At:</h1></label>
@@ -65,8 +65,7 @@
          <pre>Current time and date is: <em>{{ date | date:'shortTime' }}, {{date | date:'fullDate' }}</em></pre>
 
 
-          <datetimepicker name="date" ng-model="form.date" placeholder="mm/dd/yyyy" min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
-          
+         
           <button type="reset" ng-click="reset()"class="btn btn-default btn-lg">Reset</button>
           <button type="submit" ng-click="alertMe()"class="btn btn-primary btn-lg">Submit</button>
       </form>
@@ -85,6 +84,6 @@
       </div>
 
       </div>
-   
+
   </body>
 </html>

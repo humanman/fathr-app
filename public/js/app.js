@@ -1,14 +1,14 @@
 angular.module('fathr', ['ui.bootstrap', 'ui.bootstrap.datetimepicker','angular-flash.service', 'angular-flash.flash-alert-directive']);
 
 var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
- 
+
 
   $scope.form = {};
   $scope.errorMessage = '';
   $scope.alertMe = function(flash) {
     if ($scope.form.date === undefined){$scope.form.date = new Date();}
         //trying to create flash message based on nummber
-    if ($scope.form.phone === undefined || $scope.form.phone.length != 10) { 
+    if ($scope.form.phone === undefined || $scope.form.phone.length != 10) {
     // Publish a error flash
       $scope.errors = "Please input number as 10 digits with no spaces - 1234567890"; }
     else{
@@ -16,10 +16,10 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
       $http.post('/alerts', $scope.form).
       success(function(data) {
         $scope.successYeah = "Your message has been successfully sent to " + data.phone + ", " +data.date;
-       
-      
+
+
         $location.path('/');
-       
+
 
       }).error(function(err) {
         $scope.errorMessage = err;
@@ -38,11 +38,11 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
     $scope.date = new Date();
   };
   $scope.dateTimeNow();
-  
+
   $scope.toggleMinDate = function() {
     $scope.minDate = $scope.minDate ? null : new Date();
   };
-   
+
   $scope.maxDate = new Date('2014-06-22');
   $scope.toggleMinDate();
 
@@ -50,12 +50,14 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
     startingDay: 1,
     showWeeks: false
   };
-  
+
   // Disable weekend selection
+  // I took this out from line 69
+  // date-disabled="disabled(date, mode)"
   $scope.disabled = function(calendarDate, mode) {
     return mode === 'day' && ( calendarDate.getDay() === 0 || calendarDate.getDay() === 6 );
   };
-  
+
   $scope.hourStep = 1;
   $scope.minuteStep = 15;
 
@@ -68,11 +70,11 @@ var DatePickerCtrl = function ($scope, $http, $location, $timeout) {
   $scope.timeToggleMode = function() {
     $scope.showMeridian = !$scope.showMeridian;
   };
-  
+
   $scope.$watch("date", function(value) {
     console.log('New date value:' + value);
   }, true);
-  
+
   $scope.resetHours = function() {
     $scope.date.setHours(1);
   };

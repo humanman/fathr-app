@@ -11,14 +11,12 @@ var port 						= 5000;
 var Alert 					= require('./models/alert.js');
 
 
-    
+
 // -- TWILIO ---
-// var sid 						= process.env.TWILIO_ACCOUNT_SID;
-// var tok 						= process.env.TWILIO_AUTH_TOKEN;
-// var myNum       	 	= process.env.TWILIO_NUMBER;
-var sid 						= 'ACb487422e2904bb692be9a5bd94a8f6a4';
-var tok 						= '10156762adcc47137253413575313446';
-var myNum       	 	= '+8322517983';
+var sid 						= process.env.TWILIO_ACCOUNT_SID;
+var tok 						= process.env.TWILIO_AUTH_TOKEN;
+var myNum       	 	= process.env.TWILIO_NUMBER;
+
 var client          = require('twilio')(sid, tok);
 
 
@@ -33,12 +31,13 @@ var gm 							= require('gm').subClass({
 });
 // -- BODY PARSER --
 app.use(morgan('combined'));
-app.use(bodyParser());
 app.use(bodyParser.json());
 // parse application/vnd.api+json as json (was 'application/vnd.api+json')
-app.use(bodyParser.json({ type: 'application/json' })); 
-app.use(bodyParser.urlencoded());
-app.use(methodOverride('X-HTTP-Method-Override')); 
+app.use(bodyParser.json({ type: 'application/json' }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(methodOverride('X-HTTP-Method-Override'));
 //this doesn't.fucking/work!
 app.use(express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/public'));
@@ -61,13 +60,13 @@ console.log('MongoDB unhooked');
 
 
 // SERVER ROUTES ======================================
-       
+
 	app.get('/', function(req, res){
 		var conj = randElement(conjArr);
  		var task = randElement(taskArr);
  		var sampleCaption = conj + " " + task;
 
- 		
+
 			//-- let's get a cat! --
 			request('http://thecatapi.com/api/images/get?format=xml&categories=kitten&type=jpg', function (error, response, body) {
 					if (!error && response.statusCode == 200) {
@@ -80,18 +79,18 @@ console.log('MongoDB unhooked');
 	        if (!error && response.statusCode == 200) {
 	          var insult = JSON.parse(body);
 	          // var insult = "you are stupid!!"
-	         
-	          console.log(body);
-	       
+
+	          console.log("line 83: " + body);
+
 	          // -- resize cat image and save
 	          gm(imgUrl[1]).resize(500, 450, "!").write('image/memed1.jpg',function (err) {
 	          	//-- format/write text onto image
 	          	if (err) {
-	          		 
+
 	                console.log(err);
 	            } else {
 	           //-- the bottomCaption should take from input form
-	           	
+
 	              var options = {
 		              caption : insult.insult,
 		              bottomCaption : sampleCaption
@@ -103,7 +102,6 @@ console.log('MongoDB unhooked');
 	            				//change to send so it sends a json of the below to be caught by angular
 	                  // res.sendtojson?
 	                  res.render('index', {name: insult.insult, img: captionedImage});
-	                  console.log(captionedImage);
 	                } else {
 	                 	console.log(err);
 	                }
@@ -117,9 +115,10 @@ console.log('MongoDB unhooked');
 	  });//request for cat
 	}); //app.get /
 
-//-- this should add custom text to bottom of meme
 
 
+
+//===== this should add custom text to bottom of meme =====//
 	app.post('/alerts', function(req, res){
 	  var message = req.body.message;
 	  var date		= req.body.date;
@@ -127,17 +126,18 @@ console.log('MongoDB unhooked');
 	 	var bDate		= new Date(date).toDateString();
 		var bTime		= tConv(new Date(date));
 
+
 	 	var phnFmt 	= formatNum(phone);
-	 
-	 	
+    console.log("date" + date);
+
 			res.json({message: message, date: bDate + " at " + bTime,  phone: phnFmt});
 
-		   
-		   makeMeme(req.body.message, req.body.phone);
+
+		   makeMeme(message, req.body.phone);
 
  });//app.post /newalert
 
- 
+
 
 //------- MAKE MEME FUNCITONS ------
 
@@ -146,14 +146,14 @@ var makeMeme = function(message, phone){
 	request('http://thecatapi.com/api/images/get?format=xml&categories=kitten&type=jpg', function (error, response, body) {
 					if (!error && response.statusCode == 200) {
 						//this api does not return a json object so we must extract the img url by hand via regexp
+            var conj = randElement(conjArr);
 						var re = /<url>(.*)<\/url>/;
 						var imgUrl = body.match(re);
 	      		var actualImg = imgUrl[1].match(/.com\/(.*)/);
 	      		//-- nested in the callback is our insulting top text
-	      		request('http://pleaseinsult.me/api' , function (error, response, body) {
+	      		request('http://www.nslt.us/api/full_insult' , function (error, response, body) {
 	        if (!error && response.statusCode == 200) {
 	          var insult = JSON.parse(body);
-	          console.log(insult.insult);
 
 	          // -- resize cat image and save
 	          gm(imgUrl[1]).resize(500, 450, "!").write('image/memed1.jpg',function (err) {
@@ -164,15 +164,15 @@ var makeMeme = function(message, phone){
 	           //-- the bottomCaption should take from input form
 	              var options = {
 	              caption : insult.insult,
-	              bottomCaption : 'also, ' + message
+	              bottomCaption : "but" + " " + message
 	              };
 	              caption.path('image/memed1.jpg',options,function(err,captionedImage){
 	              	//--err will contain an Error object if there was an error
 	            		// otherwise, captionedImage will be a path to a file.
 	            			if (!err) {
 	            				//change to send so it sends a json of the below to be caught by angular
-	                  
-	                		
+
+
 	                		sendMeme(captionedImage, phone);
 	                } else {
 	                 	console.log("error from mememaker: " + err);
@@ -190,7 +190,7 @@ var makeMeme = function(message, phone){
 
 
 
-	
+
 var sendMeme = function(meme, num){
 	//Send an SMS text message
 	client.sendMessage({
@@ -203,8 +203,8 @@ var sendMeme = function(meme, num){
 	}, function(err, responseData) { //this function is executed when a response is received from Twilio
 
 	  if (!err) { // "err" is an error received during the request, if any
-	      console.log(responseData.from); // outputs 
-	      console.log(responseData.mediaUrl); // outputs 
+	      console.log(responseData.from+ "-responseData.from"); // outputs
+	      console.log(responseData.mediaUrl + "-responseData.mediaUrl" ); // outputs
 	  } else {
 	  	console.log("error message from sendMeme: " + err[0]);
 	  }
@@ -227,7 +227,7 @@ var formatNum  = function(num){
 //----- option captions for landing page meme
 
 var taskArr = [
-	"return Linda's pitcher", 
+	"return Linda's pitcher",
 	"buy chips for the party",
 	"pickup birth control",
 	"it's Alex's Birthday!",
@@ -244,10 +244,10 @@ var taskArr = [
 
 
 var conjArr = [
-	"also, ", 
-	"oh! and don't forget-", 
-	"also, don't forget: ", 
-	"also, ", 
+	"also, ",
+	"oh! and don't forget-",
+	"also, don't forget: ",
+	"also, ",
 	"and btw, ",
 	"...btw, "
 ];
@@ -267,14 +267,3 @@ var tConv = function (date) {
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 };
-
-
-
-
-
-
-
-
-
-
-
